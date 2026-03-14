@@ -1,4 +1,4 @@
-package com.joy.contoller;
+package com.joy.cosaspendientes.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
