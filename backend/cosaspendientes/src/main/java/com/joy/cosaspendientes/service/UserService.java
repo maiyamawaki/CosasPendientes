@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 import java.util.List;
 
 @Service
-public class UserInfoService {
+public class UserService {
 
 	private UserInfoRepository userRepo;
 	private PasswordEncoder passwordEncoder;
 
-	public UserInfoService (UserInfoRepository userRepo, PasswordEncoder passwordEncoder) {
+	public UserService (UserInfoRepository userRepo, PasswordEncoder passwordEncoder) {
 		this.userRepo = userRepo;
 		this.passwordEncoder = passwordEncoder;
 	}
@@ -39,8 +39,9 @@ public class UserInfoService {
 		return userList;
 	}
 
-	public UserResponse getUserById(String userId) {
-		return toDto(findUser(userId));
+	public UserResponse getUserById() {
+		Long id = 1L;
+		return toDto(findUser(id));
 	}
 
 	public UserResponse createUser(UserCreateRequest user) {
@@ -53,7 +54,8 @@ public class UserInfoService {
 	}
 
 	public UserResponse updateUser(UserUpdateRequest user) {
-		UserInfo existUser = findUser("");
+		Long id = 1L;
+		UserInfo existUser = findUser(id);
 		existUser.setUserName(user.getUserName());
 		existUser.setPassword(user.getPassword());
 		existUser.setUserImg(user.getUserImg());
@@ -61,7 +63,7 @@ public class UserInfoService {
 		return toDto(existUser);
 	}
 	
-	private UserInfo findUser(String userId){
+	private UserInfo findUser(Long userId){
 		UserInfo userInfo = userRepo.findById(userId).orElseThrow(()->new RuntimeException(""));
 		return userInfo;
 	}
