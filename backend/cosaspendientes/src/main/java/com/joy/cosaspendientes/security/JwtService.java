@@ -1,5 +1,6 @@
 package com.joy.cosaspendientes.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -10,7 +11,13 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-	private final String SECRET = "my-secret-key";
+	
+	@Value("${JWTSECRET}")
+	private final String SECRET;
+
+	public JwtService(String secret) {
+		this.SECRET = secret;
+	}
 
 	public String generateToken(Long userId) {
 		return Jwts.builder()
