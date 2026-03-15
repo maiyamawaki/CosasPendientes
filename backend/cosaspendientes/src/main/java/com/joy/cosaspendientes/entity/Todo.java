@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
@@ -11,8 +12,9 @@ import jakarta.persistence.PreUpdate;
 public class Todo {
 	@Id
 	private String todoId;
-
-	private String userId;
+	
+	@ManyToOne
+	private UserInfo user;
 
 	private String contents;
 
@@ -24,8 +26,8 @@ public class Todo {
 
 	public Todo() {}
 
-	public Todo(String userId, String contents) {
-		this.userId = userId;
+	public Todo(UserInfo user, String contents) {
+		this.user = user;
 		this.contents = contents;
 	}
 
@@ -48,12 +50,12 @@ public class Todo {
 		this.todoId = todoId;
 	}
 
-	public String getUserId() {
-		return userId;
+	public UserInfo getUserId() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(UserInfo user) {
+		this.user = user;
 	}
 
 	public String getContents() {
