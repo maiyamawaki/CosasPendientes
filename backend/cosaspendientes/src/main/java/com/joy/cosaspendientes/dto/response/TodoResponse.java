@@ -1,27 +1,27 @@
 package com.joy.cosaspendientes.dto.response;
 
 public class TodoResponse {
-	private String todoId;
+	private Long todoId;
 
-	private String userId;
+	private Long userId;
 
 	private String contents;
 
 	public TodoResponse() {}
 
-	public String getTodoId() {
+	public Long getTodoId() {
 		return todoId;
 	}
 
-	public void setTodoId(String todoId) {
+	public void setTodoId(Long todoId) {
 		this.todoId = todoId;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

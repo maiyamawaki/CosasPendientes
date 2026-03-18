@@ -3,6 +3,8 @@ package com.joy.cosaspendientes.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
@@ -11,7 +13,8 @@ import jakarta.persistence.PreUpdate;
 @Entity
 public class Todo {
 	@Id
-	private String todoId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long todoId;
 	
 	@ManyToOne
 	private UserInfo user;
@@ -42,19 +45,19 @@ public class Todo {
 		this.updTime = LocalDateTime.now();
 	}
 
-	public String getTodoId() {
+	public Long getTodoId() {
 		return todoId;
 	}
 
-	public void setTodoId(String todoId) {
+	public void setTodoId(Long todoId) {
 		this.todoId = todoId;
 	}
 
-	public UserInfo getUserId() {
+	public UserInfo getUser() {
 		return user;
 	}
 
-	public void setUserId(UserInfo user) {
+	public void setUser(UserInfo user) {
 		this.user = user;
 	}
 
