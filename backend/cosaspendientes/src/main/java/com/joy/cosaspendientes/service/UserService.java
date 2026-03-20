@@ -1,9 +1,12 @@
 package com.joy.cosaspendientes.service;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
 
 import com.joy.cosaspendientes.repository.UserInfoRepository;
+import com.joy.cosaspendientes.security.CustomUserDetails;
 import com.joy.cosaspendientes.entity.UserInfo;
 import com.joy.cosaspendientes.dto.request.UserCreateRequest;
 import com.joy.cosaspendientes.dto.request.UserUpdateRequest;
@@ -31,6 +34,12 @@ public class UserService {
 		return userRes;
 	}
 
+	private Long getUserId() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		CustomUserDetails user = (CustomUserDetails)authentication.getPrincipal();
+		return user.getUserId();
+	}
+
 	public List<UserResponse> getAllUser() {
 		List<UserResponse> userList = userRepo.findAll()
 																		.stream()
@@ -40,7 +49,7 @@ public class UserService {
 	}
 
 	public UserResponse getUserById() {
-		Long id = 1L;
+		Long id = getUserId();
 		return toDto(findUser(id));
 	}
 
@@ -54,7 +63,7 @@ public class UserService {
 	}
 
 	public UserResponse updateUser(UserUpdateRequest user) {
-		Long id = 1L;
+		Long id = getUserId();
 		UserInfo existUser = findUser(id);
 		existUser.setUserName(user.getUserName());
 		existUser.setPassword(user.getPassword());
