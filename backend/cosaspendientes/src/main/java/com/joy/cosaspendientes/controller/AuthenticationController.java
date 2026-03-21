@@ -9,7 +9,6 @@ import com.joy.cosaspendientes.service.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -21,6 +20,8 @@ public class AuthenticationController {
 	
 	@PostMapping("/login")
 	public LoginResponse login(@RequestBody LoginRequest loginUser) {
+		System.out.println("test : " + loginUser.getPassword());
+		System.out.println("test : " + loginUser.getUserId());
 		return authService.login(loginUser);
 	}
 	

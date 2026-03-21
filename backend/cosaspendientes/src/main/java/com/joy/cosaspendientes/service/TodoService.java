@@ -39,7 +39,7 @@ public class TodoService {
 
 	public List<TodoResponse> findTodoByUserId(){
 		Long userId = getUserId();
-		List<TodoResponse> todoList = todoRepository.findByUser_IdAndIsDeletedFalse(userId)
+		List<TodoResponse> todoList = todoRepository.findByUser_UserIdAndDelFlgFalse(userId)
 																		.stream()
 																		.map(this::toDto)
 																		.collect(Collectors.toList());

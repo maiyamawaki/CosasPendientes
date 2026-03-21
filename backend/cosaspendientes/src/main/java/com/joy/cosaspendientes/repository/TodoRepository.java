@@ -7,5 +7,5 @@ import com.joy.cosaspendientes.entity.Todo;
 import java.util.List;
 
 public interface TodoRepository extends JpaRepository<Todo, Long>{
-	List<Todo> findByUser_IdAndIsDeletedFalse(Long userId);
+	List<Todo> findByUser_UserIdAndDelFlgFalse(Long userId);
 }

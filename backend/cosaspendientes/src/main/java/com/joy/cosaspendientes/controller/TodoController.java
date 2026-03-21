@@ -2,8 +2,10 @@ package com.joy.cosaspendientes.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -28,17 +30,17 @@ public class TodoController {
 		return todoService.findTodoByUserId();
 	}
 
-	@GetMapping()
+	@PostMapping
 	public List<TodoResponse> creaateTodo(@RequestBody TodoCreateRequest req){
 		return todoService.createNew(req);
 	}
 
-	@PostMapping("")
+	@PutMapping("/{id}")
 	public List<TodoResponse> updateTodo(@RequestBody TodoUpdateRequest req){
 		return todoService.updateTodo(req);
 	}
 
-	@PostMapping("")
+	@DeleteMapping("/{id}")
 	public List<TodoResponse> deleteTodo(@RequestBody TodoUpdateRequest req){
 		return todoService.deleteTodo(req);
 	}

@@ -1,6 +1,5 @@
 package com.joy.cosaspendientes.service;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,10 @@ public class AuthenticationService {
 
 	public LoginResponse login(LoginRequest loginUser) {
 		UserInfo user = userRepo.findById(loginUser.getUserId()).orElseThrow(()->new RuntimeException());
-		if(!passwordEncoder.matches(loginUser.getPassword(), user.getPassword())) {
+		// if(!passwordEncoder.matches(loginUser.getPassword(), user.getPassword())) {
+		// 	throw new RuntimeException("invalid password");
+		// }
+		if(!loginUser.getPassword().equals(user.getPassword())) {
 			throw new RuntimeException("invalid password");
 		}
 
