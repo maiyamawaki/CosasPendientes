@@ -4,8 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joy.cosaspendientes.dto.request.LoginRequest;
+import com.joy.cosaspendientes.dto.request.UserCreateRequest;
 import com.joy.cosaspendientes.dto.response.LoginResponse;
 import com.joy.cosaspendientes.service.AuthenticationService;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,11 +21,15 @@ public class AuthenticationController {
 		this.authService = authService;
 	}
 	
-	@PostMapping("/login")
+	@GetMapping("/login")
 	public LoginResponse login(@RequestBody LoginRequest loginUser) {
-		System.out.println("test : " + loginUser.getPassword());
-		System.out.println("test : " + loginUser.getUserId());
 		return authService.login(loginUser);
+	}
+
+	@PostMapping("/register")
+	public LoginResponse register(@RequestBody UserCreateRequest req) {
+		System.out.println(req);
+		return authService.register(req);
 	}
 	
 }
