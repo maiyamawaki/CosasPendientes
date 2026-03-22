@@ -7,14 +7,12 @@ function LoginForm() {
 
 	const {loginUser} = useAuthentication();
 
-	const [userId, setUserId] = useState("");
+	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleLogin = async() => {
-		console.log(userId);
-		console.log(password);
 		try{
-			await loginUser(userId, password); 
+			await loginUser(userName, password); 
 			navigate("/todo");
 		} catch {
 			alert("login failed");
@@ -23,7 +21,7 @@ function LoginForm() {
 
 	return (
 		<div>
-			<input onChange={(e)=>setUserId(e.target.value)} />
+			<input onChange={(e)=>setUserName(e.target.value)} />
 			<input type="password" onChange={(e)=>setPassword(e.target.value)} />
 			<a onClick={handleLogin}>Login</a>
 		</div>

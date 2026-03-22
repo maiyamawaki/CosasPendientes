@@ -14,8 +14,13 @@ function Header() {
 					navigate("/login");
 				}}>Logout</button>
 			) : (
-				<button onClick={()=>navigate("/login")}>Login</button>
+				<div>
+					<button onClick={()=>navigate("/login")}>Login</button>
+					<button onClick={()=>navigate("/register")}>Register</button>
+				</div>
 			)}
+			{}
+
 
 		</header>
 	)
