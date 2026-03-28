@@ -1,11 +1,8 @@
 import { useTodo } from "../hooks/useTodo";
 
 function Todo({token}) {
-	const {todos, loading, error} = useTodo(token);
+	const {todos, error} = useTodo(token);
 
-	if(loading) {
-		return <p>Loading...</p>
-	}
 
 	if(error) {
 		return <p>Error : {error}</p>

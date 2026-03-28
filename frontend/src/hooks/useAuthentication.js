@@ -10,6 +10,7 @@ export const useAuthentication = () => {
 		const data = await login(userName,password);
 
 		localStorage.setItem("token", data.token);
+		console.log("token:" + data.token);
 		setUser(data);
 	}
 
